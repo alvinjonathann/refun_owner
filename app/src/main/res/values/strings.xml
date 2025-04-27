@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Refun</string>
+    <string name="scan_bottle">Scan Bottle</string>
+    <string name="generate_qr">Generate QR</string>
+    <string name="back_to_scan">Back to Scan</string>
+    <string name="back_to_main">Back to Main Menu</string>
+    <string name="total_points">Total Points: %d</string>
+    <string name="scan_another">Do you want to scan another bottle?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="unknown_barcode">Unknown bottle barcode</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="points_format">%d Points</string>
+    <string name="volume_format">%dml</string>
+</resources>
