@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.scanButton.setOnClickListener {
-            startBarcodeScanner()
+            startActivity(Intent(this, CartActivity::class.java))
+//            startBarcodeScanner()
         }
     }
 
