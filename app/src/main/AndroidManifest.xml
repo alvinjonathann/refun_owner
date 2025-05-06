@@ -28,6 +28,14 @@
         </activity>
 
         <activity
+            android:name=".BarcodeScannerActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".QRGeneratorActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".CartActivity"
             android:screenOrientation="portrait" />
 
