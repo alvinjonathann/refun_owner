@@ -2,10 +2,11 @@ package com.refun.owner
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.zxing.integration.android.IntentIntegrator
+import com.google.firebase.firestore.FirebaseFirestore
 import com.refun.owner.data.BottleDatabase
 import com.refun.owner.databinding.ActivityMainBinding
 import com.refun.owner.model.ScannedBottle
@@ -14,6 +15,7 @@ import java.time.Instant
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val scannedBottles = mutableListOf<ScannedBottle>()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.scanButton.setOnClickListener {
+// batas resolve conflict
             startActivity(Intent(this, CartActivity::class.java))
 //            startBarcodeScanner()
         }
@@ -57,13 +60,21 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Unknown bottle barcode", Toast.LENGTH_LONG).show()
             startBarcodeScanner()
+// batas resolve conflict
+            // Buka BarcodeScannerActivity (ML Kit + CameraX)
+            val intent = Intent(this, BarcodeScannerActivity::class.java)
+            startActivity(intent)
+// batas resolve conflict
         }
     }
 
     private fun showContinueScanningDialog() {
         AlertDialog.Builder(this)
             .setMessage("Do you want to scan another bottle?")
-            .setPositiveButton("Yes") { _, _ -> startBarcodeScanner() }
+            .setPositiveButton("Yes") { _, _ ->
+                val intent = Intent(this, BarcodeScannerActivity::class.java)
+                startActivity(intent)
+            }
             .setNegativeButton("No") { _, _ -> goToCart() }
             .show()
     }
