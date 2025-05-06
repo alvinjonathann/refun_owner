@@ -1,6 +1,7 @@
 package com.refun.owner
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.refun.owner.databinding.ActivityQrCodeBinding
 import com.refun.owner.model.ScannedBottle
@@ -16,7 +17,8 @@ class QrCodeActivity : AppCompatActivity() {
 
         @Suppress("DEPRECATION")
         val scannedBottles = intent.getParcelableArrayListExtra<ScannedBottle>("scannedBottles")
-        
+        Log.d("MyTag", scannedBottles.toString())
+
         if (scannedBottles != null) {
             val qrCodeBitmap = QrCodeUtils.generateQrCodeBitmap(
                 scannedBottles,
@@ -28,7 +30,7 @@ class QrCodeActivity : AppCompatActivity() {
 
         binding.backToMainButton.setOnClickListener {
             // Clear all activities and go back to MainActivity
-            finishAffinity()
+            finish()
         }
     }
 } 

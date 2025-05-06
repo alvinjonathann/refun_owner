@@ -42,9 +42,18 @@
             android:id="@+id/pointsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="444"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/removeBottleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Remove"
+            android:textSize="10sp" />
+
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView> 
+</com.google.android.material.card.MaterialCardView>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.any" />
@@ -17,30 +18,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RefunOwner"
         tools:targetApi="31">
-
+        <activity
+            android:name=".QRHistory"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CartActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".QrCodeActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
-
     </application>
 
 </manifest>

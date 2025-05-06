@@ -28,7 +28,24 @@
         app:layout_constraintBottom_toTopOf="@+id/bottlesRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.journeyapps.barcodescanner.BarcodeView>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="146dp"
+        app:layout_constraintEnd_toEndOf="@+id/barcodeView"
+        app:layout_constraintStart_toStartOf="@+id/barcodeView"
+        app:layout_constraintTop_toTopOf="@+id/barcodeView">
+
+        <View
+            android:id="@+id/scanner_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_green_light" />
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bottlesRecyclerView"
@@ -58,12 +75,11 @@
     <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/backButton"
@@ -71,7 +87,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:text="Back to Scan"
+            android:text="Start/Stop Scan"
             app:cornerRadius="30dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -85,4 +101,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout>

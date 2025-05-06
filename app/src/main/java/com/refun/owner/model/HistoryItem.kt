@@ -1,8 +1,9 @@
 package com.refun.owner.model
 
-data class HistoryItem(
-    val id: String,
-    val timestamp: String,
-    val status: Boolean,
-    val points: Int
+data class HistoryItem (
+    var id: String,
+    var timestamp: String,
+    var status: Boolean,
+    var points: Int,
+//    var bottles: ArrayList<ScannedBottle>
 ) 
