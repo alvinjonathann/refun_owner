@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.refun.owner"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.refun.owner"
