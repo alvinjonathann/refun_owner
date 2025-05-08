@@ -2,6 +2,7 @@ package com.refun.owner
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ class CartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCartBinding
     private lateinit var adapter: ProductCountAdapter
     private val productCountMap = mutableMapOf<String, Int>()
+    private val scannedBottle = mutableListOf<String>()
     private val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,9 @@ class CartActivity : AppCompatActivity() {
 
         val bottleIds = intent.getStringArrayListExtra("bottle_ids")
         if (bottleIds != null && bottleIds.isNotEmpty()) {
+            for (bottle in bottleIds) {
+                Log.d("MTAG", bottle)
+            }
             fetchProductNamesAndCount(bottleIds)
         } else {
             setupRecyclerView()
@@ -43,6 +48,9 @@ class CartActivity : AppCompatActivity() {
                 .addOnSuccessListener { doc ->
                     val name = doc.getString("name") ?: "Unknown"
                     productCountMap[name] = (productCountMap[name] ?: 0) + 1
+                    //edited
+                    scannedBottle.add(barcode)
+                    //
                 }
                 .addOnCompleteListener {
                     fetched++
@@ -73,7 +81,8 @@ class CartActivity : AppCompatActivity() {
                 repeat(count) { ids.add(name) }
             }
             val intent = Intent(this, BarcodeScannerActivity::class.java)
-            intent.putStringArrayListExtra("bottle_ids", ids)
+//            intent.putStringArrayListExtra("bottle_ids", ids)
+            intent.putStringArrayListExtra("bottle_ids", ArrayList(scannedBottle))
             startActivity(intent)
             finish()
         }
@@ -82,7 +91,8 @@ class CartActivity : AppCompatActivity() {
             // Ambil daftar barcode asli dari intent (agar benar-benar sesuai scan)
             val bottleIds = intent.getStringArrayListExtra("bottle_ids") ?: arrayListOf()
             val qrIntent = Intent(this, QRGeneratorActivity::class.java)
-            qrIntent.putStringArrayListExtra("bottle_ids", bottleIds)
+//            qrIntent.putStringArrayListExtra("bottle_ids", bottleIds)
+            qrIntent.putStringArrayListExtra("bottle_ids", ArrayList(scannedBottle))
             startActivity(qrIntent)
         }
     }
