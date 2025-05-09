@@ -94,6 +94,7 @@ class CartActivity : AppCompatActivity() {
 //            qrIntent.putStringArrayListExtra("bottle_ids", bottleIds)
             qrIntent.putStringArrayListExtra("bottle_ids", ArrayList(scannedBottle))
             startActivity(qrIntent)
+            finish()
         }
     }
 }

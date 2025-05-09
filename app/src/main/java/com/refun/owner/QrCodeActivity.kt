@@ -1,6 +1,8 @@
 package com.refun.owner
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.refun.owner.databinding.ActivityQrCodeBinding
 import com.refun.owner.model.ScannedBottle
@@ -24,11 +26,6 @@ class QrCodeActivity : AppCompatActivity() {
                 800
             )
             binding.qrCodeImageView.setImageBitmap(qrCodeBitmap)
-        }
-
-        binding.backToMainButton.setOnClickListener {
-            // Clear all activities and go back to MainActivity
-            finishAffinity()
         }
     }
 } 
