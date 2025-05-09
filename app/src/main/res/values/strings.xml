@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Refun</string>
+    <string name="app_name">Refun Owner</string>
     <string name="scan_bottle">Scan Bottle</string>
     <string name="generate_qr">Generate QR</string>
     <string name="back_to_scan">Back to Scan</string>

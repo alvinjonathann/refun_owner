@@ -1,6 +1,8 @@
 package com.refun.owner
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,6 +29,7 @@ class BarcodeScannerActivity : AppCompatActivity() {
     private lateinit var userId: String
     private lateinit var cameraExecutor: ExecutorService
     private var isProcessingBarcode = false
+    private val CAMERA_PERMISSION_REQUEST = 100
 
     // Only allow EAN-13, UPC-A, and UPC-E barcodes
     private val barcodeOptions = BarcodeScannerOptions.Builder()
@@ -44,6 +48,16 @@ class BarcodeScannerActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST
+            )
+        }
 
         val bottleIDS = intent.getStringArrayListExtra("bottle_ids")
         if (bottleIDS != null && bottleIDS.isNotEmpty()) {
